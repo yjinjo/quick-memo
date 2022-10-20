@@ -8,5 +8,15 @@ def create_app():
     @app.route('/')
     def index():
         return 'Hello World!'
+
+    from flask import jsonify, redirect, url_for
+    
+    @app.route('/test/path/<path:subpath>')
+    def path(subpath):
+        return subpath
+    
+    @app.route('/test/urlfor/<path:subpath>')
+    def urlfor(subpath):
+        return redirect(url_for('path', subpath=subpath))
     
     return app
